@@ -19,6 +19,7 @@ pip-selfcheck.json
 
 ### VisualStudioCode ###
 prueba.html
+dfa-extract-fonts.pdf
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
