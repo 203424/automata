@@ -18,7 +18,7 @@ pyvenv.cfg
 pip-selfcheck.json
 
 ### VisualStudioCode ###
-./prueba.html
+prueba.html
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
