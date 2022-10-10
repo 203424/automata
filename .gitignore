@@ -14,7 +14,7 @@
 [Ss]cripts
 pyvenv.cfg
 .venv
-.env
+.env/
 pip-selfcheck.json
 
 ### VisualStudioCode ###
