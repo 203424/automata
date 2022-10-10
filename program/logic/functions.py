@@ -3,7 +3,7 @@ import string
 from automata.fa.dfa import DFA
 from visual_automata.fa.dfa import VisualDFA
 
-NUM_ESTADOS = 31
+NUM_ESTADOS = 30
 estados = []
 alfabeto_eng = []
 simbolos = [chr(34),chr(39),chr(44),chr(32),chr(45),chr(95)] #{'"', "'", ',',' ','-', '_'}
@@ -23,12 +23,12 @@ def crear_dict(lista,valor): #recibe una lista que usará como "clave" y un valo
     for c in lista:
         my_dict[c] = valor
     return my_dict #al final retorna un diccionario donde todas las claves tienen el mismo valor
-#ej. {'a':'q15','b':'q15','c':'q15',...,'Z':'q15'}
+#ej. {'a':'q14','b':'q14','c':'q14',...,'Z':'q14'}
 dfa = DFA(
     states=set(estados),
     input_symbols=alfabeto_eng+simbolos,
     transitions={
-        'q0': {'f': 'q1', ' ': 'q12','-':'q13'},
+        'q0': {'f': 'q1', ' ': 'q0','-':'q12'},
         'q1': {'o': 'q2'},
         'q2': {'n': 'q3'},
         'q3': {'t': 'q4'},
@@ -39,29 +39,28 @@ dfa = DFA(
         'q8': {'i': 'q9'},
         'q9': {'l': 'q10'},
         'q10': {'y': 'q11'},
-        'q11': {':': 'q16', ' ': 'q11'},
-        'q12': {' ': 'q12', '-': 'q13','f':'q1'},
-        'q13': {'-': 'q14'}, #el caracter ** sirve para unir dos diccionarios en un único diccionario
-        'q14': dict({'-':'q15','_':'q15'},**crear_dict(alfabeto_eng + simbolos[6:16],'q15')), #simbolos[6:16] obtiene una nueva lista dado el rango de 6 al 16, este último no se incluye('0', '1', '2', '3', '4', '5', '6', '7', '8', '9')
-        'q15': dict({'-':'q15','_':'q15',':':'q16', ' ': 'q11'}, **crear_dict(alfabeto_eng + simbolos[6:16],'q15')),
-        'q16': dict({'"':'q17',"'":'q17','-':'q19',' ':'q16'}, **crear_dict(alfabeto_eng,'q18')),
-        'q17': crear_dict(alfabeto_eng,'q20'),
-        'q18': dict({',':'q16',' ':'q22','-':'q22',';':'q21'},**crear_dict(alfabeto_eng + simbolos[6:16], 'q18')),
-        'q19': crear_dict(alfabeto_eng,'q23'),
-        'q20': dict({'"':'q24',"'":'q24',' ':'q25'}, **crear_dict(alfabeto_eng + simbolos[6:16],'q20')),
-        'q21': {},
-        'q22': dict({' ':'q22',',':'q16',';':'q21'},**crear_dict(alfabeto_eng + simbolos[6:16],'q26')),
-        'q23': dict({'-':'q27'}, **crear_dict(alfabeto_eng + simbolos[6:16],'q23')),
-        'q24': {';':'q28',',':'q16'},
-        'q25': crear_dict(alfabeto_eng + simbolos[6:16],'q20'),
-        'q26': dict({',':'q16',' ':'q22','-':'q22',';':'q21'},**crear_dict(alfabeto_eng + simbolos[6:16],'q26')),
-        'q27': crear_dict(alfabeto_eng,'q29'),
-        'q28': {},
-        'q29': dict({';':'q21',' ':'q30',',':'q16'},**crear_dict(alfabeto_eng + simbolos[6:16],'q29')),
-        'q30': {' ':'q30',',':'q16',';':'q21'}
+        'q11': {':': 'q15', ' ': 'q11'},
+        'q12': {'-': 'q13'}, #el caracter ** sirve para unir dos diccionarios en un único diccionario
+        'q13': dict({' ':'q13','-':'q14','_':'q14'},**crear_dict(alfabeto_eng + simbolos[6:16],'q14')), #simbolos[6:16] obtiene una nueva lista dado el rango de 6 al 16, este último no se incluye('0', '1', '2', '3', '4', '5', '6', '7', '8', '9')
+        'q14': dict({' ': 'q14','-':'q14','_':'q14',':':'q15'}, **crear_dict(alfabeto_eng + simbolos[6:16],'q14')),
+        'q15': dict({'"':'q16',"'":'q16','-':'q18',' ':'q15'}, **crear_dict(alfabeto_eng,'q17')),
+        'q16': crear_dict(alfabeto_eng,'q19'),
+        'q17': dict({',':'q15',' ':'q21','-':'q21',';':'q20'},**crear_dict(alfabeto_eng + simbolos[6:16], 'q17')),
+        'q18': crear_dict(alfabeto_eng,'q22'),
+        'q19': dict({'"':'q23',"'":'q23',' ':'q24'}, **crear_dict(alfabeto_eng + simbolos[6:16],'q19')),
+        'q20': {},
+        'q21': dict({' ':'q21',',':'q15',';':'q20'},**crear_dict(alfabeto_eng + simbolos[6:16],'q25')),
+        'q22': dict({'-':'q26'}, **crear_dict(alfabeto_eng + simbolos[6:16],'q22')),
+        'q23': {';':'q27',',':'q15'}    ,
+        'q24': crear_dict(alfabeto_eng + simbolos[6:16],'q19'),
+        'q25': dict({',':'q15',' ':'q21','-':'q21',';':'q20'},**crear_dict(alfabeto_eng + simbolos[6:16],'q25')),
+        'q26': crear_dict(alfabeto_eng,'q28'),
+        'q27': {},
+        'q28': dict({';':'q20',' ':'q29',',':'q15'},**crear_dict(alfabeto_eng + simbolos[6:16],'q28')),
+        'q29': {' ':'q29',',':'q15',';':'q20'}
     },
     initial_state='q0',
-    final_states={'q18','q21','q22','q24','q26','q27','q28','q29','q30'},
+    final_states={'q17','q20','q21','q23','q25','q27','q28','q29'},
     allow_partial=True
 )
 

@@ -47,7 +47,7 @@ def limpiar_tabla():
 
 def quitar_repetidos(lista):
     lista_final = list()
-    ignorar_fonts = ["inherit","serif","sans-serif","monospace"] #fuentes válidas pero que no son utiles
+    nombres_genericos = ["inherit","serif","sans-serif","cursive","fantasy","monospace"] #fuentes válidas pero que no son utiles
     for l in lista: 
         fonts = l[l.index(":")+1:len(l)+1].split(",")
         for font in fonts:
@@ -57,7 +57,7 @@ def quitar_repetidos(lista):
                 font = font.replace("'","")
             if font[0] == " ":
                 font = font.replace(" ","",1)
-            if font not in lista_final and font not in ignorar_fonts:
+            if font not in lista_final and font not in nombres_genericos:
                 lista_final.append(font) #guarda las fuentes en una lista aparte
     return lista_final
 
