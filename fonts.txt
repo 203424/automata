@@ -1,0 +1,24 @@
+-apple-system
+BlinkMacSystemFont
+Segoe UI
+Roboto
+Helvetica Neue
+Arial
+Noto Sans
+Liberation Sans
+Apple Color Emoji
+Segoe UI Emoji
+Segoe UI Symbol
+Noto Color Emoji
+SFMono-Regular
+Menlo
+Monaco
+Consolas
+Liberation Mono
+Courier New
+SoDo Sans
+Helvetica
+Lander Grande
+Georgia
+Times
+Times New Roman
