@@ -1,6 +1,6 @@
 from tkinter import filedialog
 from tkinter.ttk import Treeview
-from logic.functions import obtener_transiciones, leer_linea
+from logic.functions import leer_linea
 from tkinter import Tk,Frame, END, Label, CENTER, Button, Text
 import os
 
@@ -24,8 +24,6 @@ for frame in (w_entrada, w_salida):
 
 show_frame(w_entrada)
 ruta_str = "Ruta: "
-
-obtener_transiciones()
 
 def abrir_archivo():
     lineas_validadas.delete("0.0",END)

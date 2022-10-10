@@ -4,7 +4,6 @@ from automata.fa.dfa import DFA
 from visual_automata.fa.dfa import VisualDFA
 
 NUM_ESTADOS = 31
-
 estados = []
 alfabeto_eng = []
 simbolos = [chr(34),chr(39),chr(44),chr(32),chr(45),chr(95)] #{'"', "'", ',',' ','-', '_'}
@@ -70,16 +69,6 @@ dfa2 = VisualDFA(dfa)
 if os.path.exists("./dfa-extract-fonts.pdf") == False:
     dfa2.show_diagram(filename='dfa-extract-fonts', format_type='pdf',path='./')
 
-def obtener_transiciones():
-    filas = list()
-    for i in range (0,31):
-        filas.append(dfa2.table.iloc[i])
-    for fila in filas:
-        for x in fila:
-            print(str(x)+" ", end="")
-        print("\n")
-    # print(dfa2.table)
-
 def leer_linea(archivo):
     lineas_validas = list()
     with open(archivo, 'r') as f:
@@ -87,6 +76,5 @@ def leer_linea(archivo):
             if validar_linea(line.rstrip()) == True:
                 lineas_validas.append(line.rstrip())
     return lineas_validas
-
 def validar_linea(input_test):
     return dfa.accepts_input(input_test)
