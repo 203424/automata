@@ -1,7 +1,7 @@
 from tkinter import filedialog
 from tkinter.ttk import Treeview
 from logic.functions import leer_linea
-from tkinter import Tk,Frame, END, Label, CENTER, Button, Text
+from tkinter import Tk,Frame, END, Label, CENTER, Button, Text, messagebox
 import os
 
 def show_frame(frame):
@@ -29,18 +29,22 @@ def abrir_archivo():
     lineas_validadas.delete("0.0",END)
     archivo = filedialog.askopenfilename(title="Abrir", initialdir="./", filetypes=(("Archivos .css", "*.css"), ("Archivos .txt", "*.txt")))
     file_dir["text"] = ruta_str+ archivo
-    lineas_validas = leer_linea(archivo)
-    conta = 0
-    for i in lineas_validas:
-        conta += 1
-        lineas_validadas.insert(END,conta)
-        lineas_validadas.insert(END," ")
-        lineas_validadas.insert(END,i)
-        lineas_validadas.insert(END,"\n\n")
-    
-    guardar_btn['command']=lambda:guardar_archivo(lineas_validas)
-    guardar_btn.pack()
-
+    print("archivo: ",archivo)
+    if archivo == "":
+        messagebox.showwarning(title="Alerta",message="No se ha seleccionado un archivo")
+    else:
+        lineas_validas = leer_linea(archivo)
+        conta = 0
+        for i in lineas_validas:
+            conta += 1
+            lineas_validadas.insert(END,conta)
+            lineas_validadas.insert(END," ")
+            lineas_validadas.insert(END,i)
+            lineas_validadas.insert(END,"\n\n")
+        
+        guardar_btn['command']=lambda:guardar_archivo(lineas_validas)
+        guardar_btn.pack()
+        
 def limpiar_tabla():
     for dato in tv.get_children(): #limpia la tabla en caso de tener información
         tv.delete(dato)
@@ -74,6 +78,7 @@ def guardar_fuentes(archivo_fuentes,lista_final):
     archivo.close()
 
 def guardar_archivo(lineas_validas):
+    guardar_btn.pack_forget()
     lineas_validadas.delete("0.0",END) #limpia el textarea
     file_dir["text"] = ruta_str #limpia la etiqueta que mostraba la ruta del archivo
 
